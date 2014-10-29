@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Venda</title>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js" />
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" />
+</h:head>
+<h:body>
+	<ui:include src="menu.xhtml">
+	</ui:include>
+	<h2>Vendas</h2>
+		<br />
+		<br />
+	<h:form id="formVenda">
+		<h:messages id="messages" globalOnly="true"
+			infoStyle="color:darkgreen" errorStyle="color:red" />
+		
+		<h4>Dados do cliente:</h4>
+		
+		Nome: <h:inputText value="#{vendaView.venda.nomeCliente}" id="nomeCLiente" />
+		CPF: <h:inputText value="#{vendaView.venda.cpfCliente}" id="cpf" />
+		CNPJ: <h:inputText value="#{vendaView.venda.cnpjCliente}" id="cnpj" />
+		<br />
+		<br />
+		
+		<h4>Dados da compra:</h4>
+		
+		Data: <h:inputText value="#{vendaView.venda.nomeCliente}" id="data" />
+		
+		Nome do Livro: <h:inputText value="#{vendaView.nomeLivro}" id="nomeLivro" />
+		Quantidade : <h:inputText value="#{vendaView.quantidade}" id="quantidade" />
+
+		<h:commandButton actionListener="#{vendaView.cadastrarVenda}"
+			id="cadastrar" class="cadastrar" value="Incluir" update=":messages" />
+		<h:commandButton actionListener="#{vendaView.pesquisarVenda}"
+			id="pesquisar" class="pesquisar" value="Pesquisar" />
+
+		<br />
+		<br />
+
+		<h:dataTable value="#{vendaView.vendas}" var="item">
+			<h:column>
+				<f:facet name="header">Código</f:facet>    				
+            	#{item.codigo}
+	         </h:column>
+			<h:column>
+				<f:facet name="header">Nome do Cliente</f:facet>
+	            #{item.nomeCliente}
+	         </h:column>
+	         <h:column>
+				<f:facet name="header">CPF</f:facet>
+	            #{item.cpfCliente}
+	         </h:column>
+	         <h:column>
+				<f:facet name="header">CNPJ</f:facet>
+	            #{item.cnpjCliente}
+	         </h:column>
+		</h:dataTable>
+
+	</h:form>
+</h:body>
+</html>
